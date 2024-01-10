@@ -1,4 +1,5 @@
 from src.entity.config_entity import DataIngestionConfig
+from src.entity.artifact_entity import DataIngestionArtifact
 from urllib import request
 import zipfile
 import pandas as pd
@@ -8,9 +9,8 @@ from src.logger import logging
 from src.exception import CustomException
 
 class DataIngestion:
-    def __init__(self):
-        self.data_ingestion_config=DataIngestionConfig()
-
+    def __init__(self,data_ingestion_config : DataIngestionConfig):
+        self.data_ingestion_config=data_ingestion_config
         os.makedirs(self.data_ingestion_config.root_dir,exist_ok=True)
     
     def download_dataset(self,download_url):
@@ -70,12 +70,21 @@ class DataIngestion:
             logging.info(f" splitting dataset interrupted due to {CustomException(e,sys)}")
             raise CustomException(e,sys)
         
-    def initiate_data_ingestion(self):
+    def initiate_data_ingestion(self) -> DataIngestionArtifact:
         try:
             os.makedirs(os.path.dirname(self.data_ingestion_config.downloaded_data_filepath),exist_ok=True)
             downloaded_path=self.download_dataset(self.data_ingestion_config.dataset_download_URL)
             extracted_filepath=self.extract_dataset(downloaded_data_path=downloaded_path)
             train_filepath,test_filepath = self.split_extracted_data(extracted_data_path=extracted_filepath)
+            
+            data_ingestion_artifacts = DataIngestionArtifact(
+                raw_data_path= extracted_filepath,
+                train_data_path=train_filepath,
+                test_data_path= test_filepath
+            )
+            
+            return data_ingestion_artifacts
+        
         except Exception as e:
             raise e
         
