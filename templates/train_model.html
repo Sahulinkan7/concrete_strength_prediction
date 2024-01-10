@@ -6,4 +6,8 @@
             {{message}}
         {% endfor %}
     {% endif %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Start model Training">
+    </form>
 {% endblock content %}

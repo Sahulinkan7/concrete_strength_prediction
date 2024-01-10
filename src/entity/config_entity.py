@@ -10,3 +10,9 @@ class DataIngestionConfig:
     splitted_dataset_dir : str = os.path.join(root_dir,"splitted_dataset")
     train_dataset_filepath : str = os.path.join(splitted_dataset_dir,"train_dataset","train.csv")
     test_dataset_filepath : str = os.path.join(splitted_dataset_dir,"test_dataset","test.csv")
+    
+@dataclass
+class DataValidationConfig:
+    root_dir : str = os.path.join("artifacts","data_validation")
+    data_validation_dir : str = os.path.join(root_dir,"data_validation")
+    data_validation_status_filepath : str = os.path.join(root_dir,"report.yaml")

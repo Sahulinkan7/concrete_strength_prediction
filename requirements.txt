@@ -2,4 +2,8 @@ scikit-learn
 pandas
 numpy
 django
+ipykernel
+pyYAML
+matplotlib
+seaborn
 -e .
