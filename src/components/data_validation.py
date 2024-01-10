@@ -29,6 +29,7 @@ class DataValidation:
             schema_columns = read_yaml_file(SCHEMA_FILE_PATH)['COLUMNS'].keys()
             logging.info(f"columns from schema file : {schema_columns}")
             logging.info(f"columns from dataframe : {all_columns}")
+            
             for col in all_columns:
                 if col not in schema_columns:
                     validation_status = False
@@ -38,7 +39,9 @@ class DataValidation:
                     validation_status = True
                     with open(self.data_validation_config.data_validation_status_filepath,'w') as file:
                         yaml.dump({'validation_status':validation_status},file)
+                        
             logging.info(f"validation status is {validation_status}")
+            
             return validation_status                    
                 
         except Exception as e:
@@ -48,6 +51,7 @@ class DataValidation:
     def initiate_data_validation(self)->DataValidationArtifact:
         try:
             validation_status = self.validate_columns(data_filepath=self.data_ingestion_artifact.raw_data_path)
+            
             validation_artifact = DataValidationArtifact(
                 data_validation_status=validation_status,
                 data_validation_report_filepath=self.data_validation_config.data_validation_status_filepath,

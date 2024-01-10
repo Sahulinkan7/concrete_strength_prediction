@@ -16,3 +16,12 @@ class DataValidationConfig:
     root_dir : str = os.path.join("artifacts","data_validation")
     data_validation_dir : str = os.path.join(root_dir,"data_validation")
     data_validation_status_filepath : str = os.path.join(root_dir,"report.yaml")
+    
+
+@dataclass
+class DataTransformationConfig:
+    root_dir : str = os.path.join("artifacts","data_transformation")
+    transformed_train_filepath: str = os.path.join(root_dir,"transformed_data","train.npy")
+    transformed_test_filepath: str = os.path.join(root_dir,"transformed_data","test.npy")
+    tranformation_object_filepath : str = os.path.join(root_dir,"transformed_object","preprocessor.pkl")
+    

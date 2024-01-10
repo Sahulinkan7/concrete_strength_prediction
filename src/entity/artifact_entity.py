@@ -14,4 +14,11 @@ class DataValidationArtifact:
     validated_train_filepath : str
     validated_test_filepath : str
     
+@dataclass
+class DataTransformationArtifact:
+    preprocessor_filepath : str
+    transformed_train_filepath : str
+    transformed_test_filepath : str
+    
+    
     
