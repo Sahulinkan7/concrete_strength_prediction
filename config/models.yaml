@@ -1,0 +1,80 @@
+model_selection:
+  model:
+    LinearRegression:
+      search_params:
+        n_neighbours:
+          - 3
+          - 5
+          - 7
+          - 9
+        normalize: 
+          - True
+          - False
+    Ridge:
+      search_params:
+        n_neighbors:
+          - 3
+          - 5
+          - 7
+          - 9
+        alpha:
+          - 0.01
+          - 0.1
+          - 1
+          - 10
+    Lasso:
+      search_params:
+        n_neighbors:
+          - 3
+          - 5
+          - 7
+          - 9
+        alpha:
+          - 0.001
+          - 0.01
+          - 0.1
+          - 1
+          - 10
+          - 100
+          - 1000
+    ElasticNet:
+      search_params:
+        alpha:
+          - 0.001
+          - 0.01
+          - 0.1
+          - 1
+          - 10
+          - 100
+          - 1000 
+    DecisionTreeRegressior:
+      search_params:
+        criterion:
+          - squared_error
+          - absolute_error        
+    RandomForestRegressor:
+      search_params:
+        n_estimators:
+          - 10
+          - 20
+          - 30
+          - 50
+        max_depth:
+          - 10
+          - 15
+          - 20
+          - 25
+        criterion:
+          - squared_error
+          - absolute_error
+    SVR:
+      search_params:
+        kernel:
+          - rbf
+          - linear
+        degree: 
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5

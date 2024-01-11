@@ -32,4 +32,14 @@ def save_numpy_array(file_path,array):
             np.save(file=file,arr=array)
     except Exception as e:
         logging.info(f"saving numpy array interrupted due to {CustomException(e,sys)}")
-        raise CustomException(e,sys) from e
+        raise CustomException(e,sys)
+    
+    
+def load_numpy_array(file_path)->np.array:
+    try:
+        logging.info(f"loading numpy array data from {file_path}")
+        with open(file_path,'rb') as file:
+            return np.load(file=file)
+    except Exception as e:
+        logging.info(f"loading numpy array data got interrupted due to {CustomException(e,sys)}")
+        raise CustomException(e,sys)

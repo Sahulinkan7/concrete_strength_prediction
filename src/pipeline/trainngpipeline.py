@@ -1,8 +1,9 @@
-from src.entity.config_entity import DataIngestionConfig,DataValidationConfig,DataTransformationConfig
-from src.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact
+from src.entity.config_entity import DataIngestionConfig,DataValidationConfig,DataTransformationConfig,ModelTrainerConfig
+from src.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact,ModelTrainerArtifact
 from src.components.data_ingestion import DataIngestion
 from src.components.data_validation import DataValidation
 from src.components.data_transformation import DataTransformation
+from src.components.model_trainer import ModelTrainer
 from src.exception import CustomException
 import os,sys 
 from src.logger import logging
@@ -13,7 +14,8 @@ class Trainpipeline:
         self.data_ingestion_config = DataIngestionConfig()
         self.data_validation_config = DataValidationConfig()
         self.data_transformation_config = DataTransformationConfig()
-    
+        self.model_trainer_config = ModelTrainerConfig()
+        
     def start_data_ingestion(self,data_ingestion_config : DataIngestionConfig) -> DataIngestionArtifact:
         try:
             logging.info(f"{'<<'*30} Data Ingestion component started {'>>'*30}")
@@ -47,17 +49,22 @@ class Trainpipeline:
             data_transformation = DataTransformation(data_transformation_config=data_transformation_config,
                                                      data_validation_artifact=data_validation_artifact)
             data_transformation_artifacts=data_transformation.initiate_data_transformation()
+            
             logging.info(f"data transformation artifacts : {data_transformation_artifacts}")
             logging.info(f"{'<<'*30} Data Transformation component completed {'>>'*30}")
+            return data_transformation_artifacts
         except Exception as e:
             logging.info(f"Training pipeline start data transformation interrupted due to {CustomException(e,sys)}")
             raise CustomException(e,sys)
         
-    def start_model_training(self,model_trainer_config,
-                             data_transformation_artifact):
+    def start_model_training(self,model_trainer_config : ModelTrainerConfig,
+                             data_transformation_artifact : DataTransformationArtifact) -> ModelTrainerArtifact:
         try:
             logging.info(f"{'<<'*30} Model Training component started {'>>'*30}")
+            model_trainer = ModelTrainer(model_trainer_config=model_trainer_config,data_transformation_artifact=data_transformation_artifact)
+            model_trainer_artifacts = model_trainer.initiate_model_trainer()
             logging.info(f"{'<<'*30} Model Training component completed {'>>'*30}")
+            return model_trainer_artifacts
         except Exception as e:
             logging.info(f"Training pipeline start model training interrupted due to {CustomException(e,sys)}")
             raise CustomException(e,sys)
@@ -68,7 +75,9 @@ class Trainpipeline:
             logging.info(f"{'=='*30} Training pipeline started {'=='*30}")
             data_ingestion_artifacts=self.start_data_ingestion(data_ingestion_config=self.data_ingestion_config)
             data_validation_artifact=self.start_data_validation(data_validation_config=self.data_validation_config,data_ingestion_artifact=data_ingestion_artifacts)
-            self.start_data_transformation(data_transformation_config=self.data_transformation_config,data_validation_artifact=data_validation_artifact)
+            data_transformation_artifact = self.start_data_transformation(data_transformation_config=self.data_transformation_config,data_validation_artifact=data_validation_artifact)
+            best_model_score=self.start_model_training(model_trainer_config=self.model_trainer_config,data_transformation_artifact=data_transformation_artifact)
+            print(best_model_score)
             Trainpipeline.is_running_pipeline = False
             logging.info(f"{'=='*30} Training pipeline completed {'=='*30}")
         except Exception as e:

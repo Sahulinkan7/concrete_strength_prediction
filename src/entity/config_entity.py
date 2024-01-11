@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 import os
-
+from src.constants import MODEL_TRAINER_CONFIG_FILE_PATH
 @dataclass
 class DataIngestionConfig:
     root_dir: str = os.path.join("artifacts","data_ingestion")
@@ -25,3 +25,9 @@ class DataTransformationConfig:
     transformed_test_filepath: str = os.path.join(root_dir,"transformed_data","test.npy")
     tranformation_object_filepath : str = os.path.join(root_dir,"transformed_object","preprocessor.pkl")
     
+
+@dataclass
+class ModelTrainerConfig:
+    root_dir : str = os.path.join("artifacts","model_trainer")
+    model_trainer_config_filepath = MODEL_TRAINER_CONFIG_FILE_PATH
+    trained_model_filepath : str = os.path.join(root_dir,"trained_model","model.pkl")
