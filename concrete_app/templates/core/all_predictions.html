@@ -1,0 +1,39 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<h4><a href="{% url 'home' %}" class="text-decoration-none text-black">Home</a> | <a href="{% url 'model_prediction' %}" class="text-decoration-none text-black">new prediction</a> 
+    | <a href="{% url 'model_training' %}" class="text-decoration-none text-black">model training</a></h4>
+
+<table class="table table-hover table-responsive table-sm table-striped">
+    <thead class="table-dark">
+        <tr class="text-center">
+            <th>cement</th>
+            <th>blast_furnace_slag</th>
+            <th>fly_ash</th>
+            <th>water</th>
+            <th>Superplasticizer</th>
+            <th>coarse_aggregate</th>
+            <th>fine_aggregate</th>
+            <th>age</th>
+            <th>prediction strength</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for prediction in predictions %}
+            <tr class="text-center">
+                <td>{{prediction.cement}}</td>
+                <td>{{prediction.blast_furnace_slag}}</td>
+                <td>{{prediction.fly_ash}}</td>
+                <td>{{prediction.water}}</td>
+                <td>{{prediction.superplasticizer}}</td>
+                <td>{{prediction.coarse_aggregate}}</td>
+                <td>{{prediction.fine_aggregate}}</td>
+                <td>{{prediction.age}}</td>
+                <td>{{prediction.concrete_compressive_strength}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

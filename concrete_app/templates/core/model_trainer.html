@@ -1,0 +1,28 @@
+{% extends "core/base.html" %}
+
+
+{% block content %}
+
+    {% if messages %}           
+        {% for message in messages %}
+            <div class="alert alert-primary alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}             
+    {% endif %}
+    <h4><a href="{% url 'home' %}" class="text-decoration-none text-black">Home</a> | <a href="{% url 'model_prediction' %}" class="text-decoration-none text-black">Predictions</a></h4>
+    <div class="card bg-black">
+        <div class="card-title">
+            <h4 class="text-center text-white">want to train model ? </h4>
+        </div>
+        <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-sm btn-primary form-control" value="Start Model Training">
+            </form>
+        </div>
+    </div>
+    
+
+{% endblock content %}
