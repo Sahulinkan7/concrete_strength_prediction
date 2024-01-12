@@ -8,6 +8,7 @@ class DataIngestionConfig:
     root_dir: str = os.path.join("artifacts", "data_ingestion")
     dataset_download_URL: str = (
         f"https://github.com/Sahulinkan7/dataset_repo/raw/main/concrete_data.zip"
+        
     )
     downloaded_data_filepath: str = os.path.join(
         root_dir, "downloaded_data", "concrete.zip"

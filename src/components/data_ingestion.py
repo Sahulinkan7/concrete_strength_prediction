@@ -60,6 +60,7 @@ class DataIngestion:
 
             logging.info(f"reading dataset from path : {extracted_data_path}")
             dataframe = pd.read_csv(extracted_data_path)
+            logging.info(f"reading dataframe column names : {dataframe.columns}")
             logging.info(f"dataframe is as \n {dataframe.head(3).to_string()}")
 
             os.makedirs(
@@ -79,8 +80,8 @@ class DataIngestion:
                 f"train data shape : {train_df.shape} and test data shape : {test_df.shape}"
             )
 
-            train_df.to_csv(self.data_ingestion_config.train_dataset_filepath)
-            test_df.to_csv(self.data_ingestion_config.test_dataset_filepath)
+            train_df.to_csv(self.data_ingestion_config.train_dataset_filepath,header=True,index=False)
+            test_df.to_csv(self.data_ingestion_config.test_dataset_filepath,header=True,index=False)
 
             train_filepath = self.data_ingestion_config.train_dataset_filepath
             test_filepath = self.data_ingestion_config.test_dataset_filepath

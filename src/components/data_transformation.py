@@ -72,6 +72,7 @@ class DataTransformation:
             logging.info(f"droping target columns from training dataframe ")
             input_feature_train_df = train_dataframe.drop(columns=target_column, axis=1)
             target_feature_train_df = train_dataframe[target_column]
+            logging.info(f"columns for model training are \n {input_feature_train_df.columns}")
             logging.info(f"target feature {target_column} dropped from train dataframe")
             logging.info(
                 f"input feature train dataframe and target feature dataframe created successfully"
@@ -85,6 +86,7 @@ class DataTransformation:
                 f"input feature test dataframe and target feature dataframe created successfully"
             )
 
+            logging.info(f"before transforming train input features {input_feature_train_df.head(2).to_string()}")
             logging.info(
                 f"fitting preprocessor object with input train feature dataframe to create tranformer object"
             )

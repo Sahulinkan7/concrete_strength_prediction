@@ -10,11 +10,11 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import SVR
 from sklearn.metrics import r2_score
 from sklearn.model_selection import GridSearchCV
-from src.utils.commonutils import read_yaml_file, save_object
+from src.utils.commonutils import read_yaml_file, save_object,load_object
 
 
 class CustomModel:
-    def __init__(self, preprocessing_object, model_object):
+    def __init__(self, preprocessing_object : object, model_object : object):
         self.preprocessing_object = preprocessing_object
         self.model_object = model_object
 
@@ -107,7 +107,7 @@ class ModelTrainer:
             )
 
             logging.info(
-                f"splitting trin adn test array to independent and dependent features "
+                f"splitting train and test array to independent and dependent features "
             )
             x_train, y_train, x_test, y_test = (
                 train_array[:, :-1],
@@ -116,7 +116,7 @@ class ModelTrainer:
                 test_array[:, -1],
             )
 
-            preprocessor = self.data_transformation_artifact.preprocessor_filepath
+            preprocessor = load_object(filepath=self.data_transformation_artifact.preprocessor_filepath)
 
             models = {
                 "LinearRegression": LinearRegression(),

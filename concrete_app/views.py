@@ -5,8 +5,9 @@ from .models import Modelpredictions
 from src.pipeline.trainngpipeline import Trainpipeline
 from django.contrib import messages
 from src.logger import logging
-from .models import Modeltraining
-from uuid import uuid4
+from .models import Modeltraining,Modelpredictions
+from src.pipeline.predictionpipeline import get_data_frame,Prediction
+
 # Create your views here.
 
 def homepage(request):
@@ -43,18 +44,27 @@ def model_prediction(request):
         if request.method=="POST":
             fm=Predictionform(data=request.POST)
             if fm.is_valid():
-                
-                fm.save()
-                # cement=fm.cleaned_data['cement']
-                # blast_furnace_slag=fm.cleaned_data['blast_furnace_slag']
-                # fly_ash=fm.cleaned_data['fly_ash']
-                # water = fm.cleaned_data['water']
-                # print(cement,blast_furnace_slag,fly_ash,water)
-                logging.info(f"user clicked on predict button to predict the cement strength and the predicted value is ")
+                datadict={}
+                print(fm.cleaned_data)
+                print(type(fm.cleaned_data))
+                for k,v in fm.cleaned_data.items():
+                    datadict[k]=int(v)
+                print(datadict)
+                dataframe = get_data_frame(datadict)
+                logging.info(f"dataframe for prediction is \n {dataframe.head(1).to_string()}")
+                predictionpipeline = Prediction()
+                output = predictionpipeline.single_output_predict(dataframe)
+                if output is None:
+                    messages.error(request,"Model not yet trained and not available for predictions")
+                    return HttpResponseRedirect(reverse("model_prediction"))
+                datadict['concrete_compressive_strength'] = output[0]
+                modelpreds=Modelpredictions(**datadict)
+                modelpreds.save()
+                logging.info(f"user clicked on predict button to predict the cement strength and the predicted value is {output[0]}")
+                return render(request,"core/prediction.html",{'form':fm,'predicted_output':output[0]})
         else:
             logging.info(f"user is on prediction page")
             fm=Predictionform()
-        
         return render(request,"core/prediction.html",{'form':fm})
     except Exception as e:
         raise e

@@ -26,6 +26,13 @@ def save_object(file_path, obj):
         logging.info(f"saving object interrupted due to {CustomException(e,sys)}")
         raise CustomException(e, sys)
 
+def load_object(filepath):
+    try:
+        logging.info(f"loading object from file path : {filepath}")
+        with open(filepath,'rb') as fileobj:
+            return pickle.load(fileobj)
+    except Exception as e:
+        raise CustomException(e,sys)
 
 def save_numpy_array(file_path, array):
     try:
