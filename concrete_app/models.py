@@ -13,3 +13,12 @@ class Modelpredictions(models.Model):
     age = models.DecimalField(decimal_places=7,max_digits=11)
     concrete_compressive_strength = models.DecimalField(decimal_places=7,max_digits=11,blank=True,null=True)
     
+class Modeltraining(models.Model):
+    experiment_id = models.CharField(max_length = 100,null=True)
+    running_status = models.CharField(max_length = 100,null=True)
+    start_time = models.CharField(max_length = 100,null=True)
+    stop_time = models.CharField(max_length = 100,null=True)
+    execution_time = models.CharField(max_length = 100,null=True)
+    message = models.CharField(max_length = 100,null=True)
+    accuracy = models.CharField(max_length = 100,null=True)
+    is_model_accepted = models.CharField(max_length = 100,null=True)

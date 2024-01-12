@@ -23,6 +23,39 @@
             </form>
         </div>
     </div>
+
+    {% if experiments %}
+        <table class="table table-hover table-stripped mt-3">
+            <thead class="table-primary">
+                <tr class="text-center">
+                    <th>Exp ID</th>
+                    <th>running_status</th>
+                    <th>start_time</th>
+                    <th>stop_time</th>
+                    <th>execution_time</th>
+                    <th>message</th>
+                    <th>accuracy</th>
+                    <th>is_model_accepted</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exp in experiments %}
+                    <tr class="text-center">
+                        <td>{{exp.experiment_id}}</td>
+                        <td>{{exp.running_status}}</td>
+                        <td>{{exp.start_time}}</td>
+                        <td>{{exp.stop_time}}</td>
+                        <td>{{exp.execution_time}}</td>
+                        <td>{{exp.message}}</td>
+                        <td>{{exp.accuracy}}</td>
+                        <td>{{exp.is_model_accepted}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h3 class="text-center text-light mt-3"> No Experiments done yet </h3>
+    {% endif %}
     
 
 {% endblock content %}

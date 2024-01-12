@@ -157,32 +157,32 @@ class ModelTrainer:
             logging.info(f"accuracy of best tuned model is {accuracy_score}")
 
             if accuracy_score < 0.7:
-                raise Exception(
-                    "Non best model found with having atleast threshold of 0.7"
+                model_accepted = False
+            else:
+                model_accepted = True
+                logging.info(f"best model found ")
+
+                os.makedirs(
+                    os.path.dirname(self.model_trainer_config.trained_model_filepath),
+                    exist_ok=True,
+                )
+                logging.info(
+                    f"saving model in path : {self.model_trainer_config.trained_model_filepath}"
                 )
 
-            logging.info(f"best model found ")
+                custom_model = CustomModel(
+                    preprocessing_object=preprocessor, model_object=fined_tuned_best_model
+                )
 
-            os.makedirs(
-                os.path.dirname(self.model_trainer_config.trained_model_filepath),
-                exist_ok=True,
-            )
-            logging.info(
-                f"saving model in path : {self.model_trainer_config.trained_model_filepath}"
-            )
-
-            custom_model = CustomModel(
-                preprocessing_object=preprocessor, model_object=fined_tuned_best_model
-            )
-
-            save_object(
-                file_path=self.model_trainer_config.trained_model_filepath,
-                obj=custom_model,
-            )
+                save_object(
+                    file_path=self.model_trainer_config.trained_model_filepath,
+                    obj=custom_model,
+                )
 
             model_trainer_artifacts = ModelTrainerArtifact(
                 trained_model_path=self.model_trainer_config.trained_model_filepath,
                 best_model_score=accuracy_score,
+                model_accepted= model_accepted
             )
 
             return model_trainer_artifacts

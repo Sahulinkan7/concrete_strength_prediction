@@ -28,3 +28,4 @@ class DataTransformationArtifact:
 class ModelTrainerArtifact:
     trained_model_path: str
     best_model_score: float
+    model_accepted : bool
