@@ -1,0 +1,137 @@
+[2024-01-12 14:53:53,324 - root INFO ] : user is on prediction page
+[2024-01-12 14:54:00,996 - root INFO ] : creating new dataframe 
+[2024-01-12 14:54:00,999 - root INFO ] : Index(['cement', 'blast_furnace_slag', 'fly_ash', 'water', 'superplasticizer',
+       'coarse_aggregate', 'fine_aggregate', 'age'],
+      dtype='object')
+[2024-01-12 14:54:01,008 - root INFO ] : 
+   cement  blast_furnace_slag  fly_ash  water  superplasticizer  coarse_aggregate  fine_aggregate  age
+0      23                  23       54     45                55              4545              54   45
+[2024-01-12 14:54:01,013 - root INFO ] : dataframe for prediction is 
+    cement  blast_furnace_slag  fly_ash  water  superplasticizer  coarse_aggregate  fine_aggregate  age
+0      23                  23       54     45                55              4545              54   45
+[2024-01-12 14:54:01,013 - root INFO ] : doing single data predition 
+[2024-01-12 14:54:01,029 - root INFO ] : user is on prediction page
+[2024-01-12 14:54:35,607 - root INFO ] : user is on prediction page
+[2024-01-12 14:54:55,320 - root INFO ] : creating new dataframe 
+[2024-01-12 14:54:55,321 - root INFO ] : Index(['cement', 'blast_furnace_slag', 'fly_ash', 'water', 'superplasticizer',
+       'coarse_aggregate', 'fine_aggregate', 'age'],
+      dtype='object')
+[2024-01-12 14:54:55,323 - root INFO ] : 
+   cement  blast_furnace_slag  fly_ash  water  superplasticizer  coarse_aggregate  fine_aggregate   age
+0     323                2323     2323   2323               323              3223            2323  2323
+[2024-01-12 14:54:55,325 - root INFO ] : dataframe for prediction is 
+    cement  blast_furnace_slag  fly_ash  water  superplasticizer  coarse_aggregate  fine_aggregate   age
+0     323                2323     2323   2323               323              3223            2323  2323
+[2024-01-12 14:54:55,325 - root INFO ] : doing single data predition 
+[2024-01-12 14:54:55,340 - root INFO ] : user is on prediction page
+[2024-01-12 14:55:00,824 - root INFO ] : user is visiting all prediction page
+[2024-01-12 14:55:16,797 - root INFO ] : user is on model training page
+[2024-01-12 14:55:23,957 - root INFO ] : user is starting the training pipeline
+[2024-01-12 14:55:23,958 - root INFO ] : pipeline is about to start 
+[2024-01-12 14:55:23,960 - root INFO ] : ============================================================ Training pipeline started ============================================================
+[2024-01-12 14:55:23,961 - root INFO ] : Pipeline experiments : Experiments(experiment_id='f0a73994-1217-43e1-8c07-17f4701d5dc4', running_status=True, start_time=datetime.datetime(2024, 1, 12, 14, 55, 23, 961441), stop_time=None, execution_time=None, message='Pipeline has been started', accuracy=None, is_model_accepted=None)
+[2024-01-12 14:55:23,963 - root INFO ] : saving experiment data in database
+[2024-01-12 14:55:23,974 - root INFO ] : user is on model training page
+[2024-01-12 14:55:24,141 - root INFO ] : experiment data got saved into database
+[2024-01-12 14:55:24,142 - root INFO ] : <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Data Ingestion component started >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+[2024-01-12 14:55:24,145 - root INFO ] : downloading dataset from url : https://github.com/Sahulinkan7/dataset_repo/raw/main/concrete_data.zip
+[2024-01-12 14:55:25,711 - root INFO ] : dataset got downloaded and saved into path : artifacts\data_ingestion\downloaded_data\concrete.zip
+[2024-01-12 14:55:25,711 - root INFO ] : extracting downloaded zip file from artifacts\data_ingestion\downloaded_data\concrete.zip
+[2024-01-12 14:55:25,728 - root INFO ] : dataset got extracted to the path : artifacts\data_ingestion\extracted_data\concrete_data.csv
+[2024-01-12 14:55:25,728 - root INFO ] : spliting extracted dataset into train data and test data set.
+[2024-01-12 14:55:25,728 - root INFO ] : reading dataset from path : artifacts\data_ingestion\extracted_data\concrete_data.csv
+[2024-01-12 14:55:25,761 - root INFO ] : reading dataframe column names : Index(['cement', 'blast_furnace_slag', 'fly_ash', 'water', 'superplasticizer',
+       'coarse_aggregate', 'fine_aggregate', 'age',
+       'concrete_compressive_strength'],
+      dtype='object')
+[2024-01-12 14:55:25,761 - root INFO ] : dataframe is as 
+    cement  blast_furnace_slag  fly_ash  water  superplasticizer  coarse_aggregate  fine_aggregate  age  concrete_compressive_strength
+0   540.0                 0.0      0.0  162.0               2.5            1040.0           676.0   28                          79.99
+1   540.0                 0.0      0.0  162.0               2.5            1055.0           676.0   28                          61.89
+2   332.5               142.5      0.0  228.0               0.0             932.0           594.0  270                          40.27
+[2024-01-12 14:55:25,761 - root INFO ] : dataframe splitted into train dataframe and test dataframe 
+[2024-01-12 14:55:25,761 - root INFO ] : train data shape : (824, 9) and test data shape : (206, 9)
+[2024-01-12 14:55:25,794 - root INFO ] : train dataframe saved in file path  : artifacts\data_ingestion\splitted_dataset\train_dataset\train.csv
+[2024-01-12 14:55:25,794 - root INFO ] : test dataframe saved in file path : artifacts\data_ingestion\splitted_dataset\test_dataset\test.csv
+[2024-01-12 14:55:25,794 - root INFO ] : data ingestion artifacts 
+ DataIngestionArtifact(raw_data_path='artifacts\\data_ingestion\\extracted_data\\concrete_data.csv', train_data_path='artifacts\\data_ingestion\\splitted_dataset\\train_dataset\\train.csv', test_data_path='artifacts\\data_ingestion\\splitted_dataset\\test_dataset\\test.csv')
+[2024-01-12 14:55:25,794 - root INFO ] : <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Data Ingestion component completed >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+[2024-01-12 14:55:25,794 - root INFO ] : <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Data validation component started >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+[2024-01-12 14:55:25,794 - root INFO ] : Data Validation object created
+[2024-01-12 14:55:25,794 - root INFO ] : Data validation artifact directory created 
+[2024-01-12 14:55:25,794 - root INFO ] : validating all columns inside dataframe
+[2024-01-12 14:55:25,806 - root INFO ] : columns from schema file : dict_keys(['cement', 'blast_furnace_slag', 'fly_ash', 'water', 'superplasticizer', 'coarse_aggregate', 'fine_aggregate', 'age', 'concrete_compressive_strength'])
+[2024-01-12 14:55:25,806 - root INFO ] : columns from dataframe : ['cement', 'blast_furnace_slag', 'fly_ash', 'water', 'superplasticizer', 'coarse_aggregate', 'fine_aggregate', 'age', 'concrete_compressive_strength']
+[2024-01-12 14:55:25,815 - root INFO ] : validation status is True
+[2024-01-12 14:55:25,815 - root INFO ] : data validation artifacts 
+ DataValidationArtifact(data_validation_status=True, data_validation_report_filepath='artifacts\\data_validation\\report.yaml', validated_dataset_filepath='artifacts\\data_ingestion\\extracted_data\\concrete_data.csv', validated_train_filepath='artifacts\\data_ingestion\\splitted_dataset\\train_dataset\\train.csv', validated_test_filepath='artifacts\\data_ingestion\\splitted_dataset\\test_dataset\\test.csv')
+[2024-01-12 14:55:25,815 - root INFO ] : <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Data validation component completed >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+[2024-01-12 14:55:25,815 - root INFO ] : <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Data Transformation component started >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+[2024-01-12 14:55:25,816 - root INFO ] :  reading dataframe 
+[2024-01-12 14:55:25,830 - root INFO ] : creating data transformation object
+[2024-01-12 14:55:25,830 - root INFO ] : creating pipeline for data transformer object
+[2024-01-12 14:55:25,830 - root INFO ] : pipeline for data transformer created
+[2024-01-12 14:55:25,830 - root INFO ] : data transformer object created
+[2024-01-12 14:55:25,830 - root INFO ] : droping target columns from training dataframe 
+[2024-01-12 14:55:25,844 - root INFO ] : columns for model training are 
+ Index(['cement', 'blast_furnace_slag', 'fly_ash', 'water', 'superplasticizer',
+       'coarse_aggregate', 'fine_aggregate', 'age'],
+      dtype='object')
+[2024-01-12 14:55:25,844 - root INFO ] : target feature concrete_compressive_strength dropped from train dataframe
+[2024-01-12 14:55:25,844 - root INFO ] : input feature train dataframe and target feature dataframe created successfully
+[2024-01-12 14:55:25,844 - root INFO ] : target feature dropped from test dataframe
+[2024-01-12 14:55:25,844 - root INFO ] : input feature test dataframe and target feature dataframe created successfully
+[2024-01-12 14:55:25,844 - root INFO ] : before transforming train input features    cement  blast_furnace_slag  fly_ash  water  superplasticizer  coarse_aggregate  fine_aggregate  age
+0   331.0                 0.0      0.0  192.0               0.0            1025.0           821.0    7
+1   255.0                 0.0      0.0  192.0               0.0             889.8           945.0   90
+[2024-01-12 14:55:25,844 - root INFO ] : fitting preprocessor object with input train feature dataframe to create tranformer object
+[2024-01-12 14:55:25,844 - root INFO ] : input features of train and test dataframe got transformed
+[2024-01-12 14:55:25,844 - root INFO ] : saving object in file path : artifacts\data_transformation\transformed_object\preprocessor.pkl
+[2024-01-12 14:55:25,861 - root INFO ] : preprocessor object got saved successfully .
+[2024-01-12 14:55:25,861 - root INFO ] : saving numpy array in path : artifacts\data_transformation\transformed_data\train.npy
+[2024-01-12 14:55:25,861 - root INFO ] : saving numpy array in path : artifacts\data_transformation\transformed_data\test.npy
+[2024-01-12 14:55:25,861 - root INFO ] : Transformed train array and test array got saved successfully
+[2024-01-12 14:55:25,861 - root INFO ] : data transformation artifacts : DataTransformationArtifact(preprocessor_filepath='artifacts\\data_transformation\\transformed_object\\preprocessor.pkl', transformed_train_filepath='artifacts\\data_transformation\\transformed_data\\train.npy', transformed_test_filepath='artifacts\\data_transformation\\transformed_data\\test.npy')
+[2024-01-12 14:55:25,861 - root INFO ] : <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Data Transformation component completed >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+[2024-01-12 14:55:25,861 - root INFO ] : <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Model Training component started >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+[2024-01-12 14:55:25,861 - root INFO ] : splitting train array and test array input and target feature 
+[2024-01-12 14:55:25,861 - root INFO ] : loading numpy array data from artifacts\data_transformation\transformed_data\train.npy
+[2024-01-12 14:55:25,861 - root INFO ] : loading numpy array data from artifacts\data_transformation\transformed_data\test.npy
+[2024-01-12 14:55:25,877 - root INFO ] : splitting train and test array to independent and dependent features 
+[2024-01-12 14:55:25,877 - root INFO ] : loading object from file path : artifacts\data_transformation\transformed_object\preprocessor.pkl
+[2024-01-12 14:55:25,877 - root INFO ] : starting model training and evaluation 
+[2024-01-12 14:55:27,931 - root INFO ] : models evaluation scores as 
+ {'LinearRegression': 0.6296146920759185, 'Ridge': 0.6304793844698795, 'Lasso': 0.5963200779448017, 'ElasticNet': 0.5177799912596457, 'DecisionTreeRegressior': 0.864293653175455, 'RandomForestRegressor': 0.9229094307856633, 'SVR': 0.6770116250771685}
+[2024-01-12 14:55:31,041 - root INFO ] : user is starting the training pipeline
+[2024-01-12 14:55:31,050 - root ERROR ] : pipeline can not be started , pipeline is already running
+[2024-01-12 14:55:34,415 - root INFO ] : user is starting the training pipeline
+[2024-01-12 14:55:34,485 - root ERROR ] : pipeline can not be started , pipeline is already running
+[2024-01-12 14:55:41,666 - root INFO ] : user is on model training page
+[2024-01-12 14:55:44,839 - root INFO ] : user is on model training page
+[2024-01-12 14:56:28,459 - root INFO ] : accuracy of best tuned model is 0.9236972359808377
+[2024-01-12 14:56:28,459 - root INFO ] : best model found 
+[2024-01-12 14:56:28,459 - root INFO ] : saving model in path : artifacts\model_trainer\trained_model\model.pkl
+[2024-01-12 14:56:28,459 - root INFO ] : saving object in file path : artifacts\model_trainer\trained_model\model.pkl
+[2024-01-12 14:56:28,475 - root INFO ] : <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Model Training component completed >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+[2024-01-12 14:56:28,475 - root INFO ] : updating experiment data in database
+[2024-01-12 14:56:28,475 - root INFO ] : {'experiment_id': 'f0a73994-1217-43e1-8c07-17f4701d5dc4', 'running_status': False, 'start_time': datetime.datetime(2024, 1, 12, 14, 55, 23, 961441), 'stop_time': datetime.datetime(2024, 1, 12, 14, 56, 28, 475047), 'execution_time': datetime.timedelta(seconds=64, microseconds=513606), 'message': 'Pipeline completed', 'accuracy': 0.9236972359808377, 'is_model_accepted': True}
+[2024-01-12 14:56:28,584 - root INFO ] : experiment data got updated in db
+[2024-01-12 14:56:28,584 - root INFO ] : ============================================================ Training pipeline completed ============================================================
+[2024-01-12 14:57:39,868 - root INFO ] : user is on model training page
+[2024-01-12 14:57:46,598 - root INFO ] : user is on prediction page
+[2024-01-12 14:58:33,710 - root INFO ] : creating new dataframe 
+[2024-01-12 14:58:33,711 - root INFO ] : Index(['cement', 'blast_furnace_slag', 'fly_ash', 'water', 'superplasticizer',
+       'coarse_aggregate', 'fine_aggregate', 'age'],
+      dtype='object')
+[2024-01-12 14:58:33,714 - root INFO ] : 
+   cement  blast_furnace_slag  fly_ash  water  superplasticizer  coarse_aggregate  fine_aggregate  age
+0     540                   0        0    162                 2              1040             676   28
+[2024-01-12 14:58:33,716 - root INFO ] : dataframe for prediction is 
+    cement  blast_furnace_slag  fly_ash  water  superplasticizer  coarse_aggregate  fine_aggregate  age
+0     540                   0        0    162                 2              1040             676   28
+[2024-01-12 14:58:33,716 - root INFO ] : doing single data predition 
+[2024-01-12 14:58:33,717 - root INFO ] : loading object from file path : artifacts\model_trainer\trained_model\model.pkl
+[2024-01-12 14:58:33,764 - root INFO ] : predicted output is [71.2961]
+[2024-01-12 14:58:33,906 - root INFO ] : user clicked on predict button to predict the cement strength and the predicted value is 71.29609999999994
+[2024-01-12 14:58:36,899 - root INFO ] : user is visiting all prediction page
+[2024-01-12 14:58:51,474 - root INFO ] : uer is on landing page .

@@ -1,0 +1,4 @@
+[2024-01-23 11:53:06,387 - root INFO ] : uer is on landing page .
+[2024-01-23 11:53:08,529 - django.request WARNING ] : Not Found: /favicon.ico
+[2024-01-23 12:00:33,628 - root INFO ] : user is on model training page
+[2024-01-23 12:02:20,779 - django.utils.autoreload INFO ] : E:\DataScience\Ineuron\Internship Projects\Machine Learning Projects\concrete_strength_prediction\concrete_strength_django_project\settings.py changed, reloading.
